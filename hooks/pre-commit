@@ -1,0 +1,9 @@
+#!/bin/bash -e
+
+tofu -chdir="opentofu/aws/" init -backend=false
+if ! tofu -chdir="opentofu/aws/" fmt -check; then
+    tofu -chdir="opentofu/aws/" fmt
+    echo "Formatting issues detected and fixed, please stage the new changes" 1>&2
+    echo "Your changes were NOT committed" 1>&2
+    exit 1
+fi
