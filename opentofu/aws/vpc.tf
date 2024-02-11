@@ -40,6 +40,24 @@ resource "aws_security_group_rule" "microk8s-sg-ingress-0" {
   security_group_id = aws_security_group.microk8s-sg.id
 }
 
+resource "aws_security_group_rule" "microk8s-sg-ingress-1" {
+  type              = "ingress"
+  from_port         = 8080
+  to_port           = 8080
+  protocol          = "tcp"
+  cidr_blocks       = ["0.0.0.0/0"]
+  security_group_id = aws_security_group.microk8s-sg.id
+}
+
+resource "aws_security_group_rule" "microk8s-sg-ingress-2" {
+  type              = "ingress"
+  from_port         = 8443
+  to_port           = 8443
+  protocol          = "tcp"
+  cidr_blocks       = ["0.0.0.0/0"]
+  security_group_id = aws_security_group.microk8s-sg.id
+}
+
 resource "aws_security_group_rule" "microk8s-sg-egress-0" {
   type              = "egress"
   from_port         = 0
