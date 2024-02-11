@@ -35,3 +35,4 @@ terraform.rc
 
 # Ignore auto-generated OpenTofu resources
 manifests/nginx-ingress.yaml
+manifests/letsencrypt-clusterissuer.yaml

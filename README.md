@@ -34,6 +34,7 @@ _N.B. It is strongly advised to use a dedicated `microk8s-homelab` SSH key pair 
 
 ```bash
 export CLOUD_PROVIDER="aws"
+export TF_VAR_email="webmaster@example.com" # replace me!
 tofu -chdir="opentofu/${CLOUD_PROVIDER}/" init
 tofu -chdir="opentofu/${CLOUD_PROVIDER}/" plan
 tofu -chdir="opentofu/${CLOUD_PROVIDER}/" apply
@@ -41,14 +42,15 @@ tofu -chdir="opentofu/${CLOUD_PROVIDER}/" apply
 
 The following OpenTofu variables are supported for AWS.
 
-| Variable | Type | Default | Description |
-| --- | --- | --- | --- |
-| `profile` | `string` | `"default"` | AWS profile to assume for AWS CLI v2 and OpenTofu |
-| `region` | `string` | `"ap-east-1"` | AWS region to deploy the resources into |
-| `vpc_cidr` | `string` | `"10.0.0.0/16"` | VPC CIDR block. Should be a valid [RFC 1918](https://datatracker.ietf.org/doc/html/rfc1918) private subnet |
-| `subnet_cidr` | `string` | `"10.0.1.0/24"` | Subnet CIDR block. Should be a valid subnet of the VPC CIDR block |
-| `ssh_pubkey_path` | `string` | `"~/.ssh/microk8s-homelab.pub"` | Path to SSH public key. Evaluated with `pathexpand()` before use |
-| `instance_type` | `string` | `"t3.micro"` | Instance type of MicroK8s reverse tunnel proxy |
+| Variable | Required | Type | Default | Description |
+| --- | --- | --- | --- | --- |
+| `email` | Y | `string` | `"webmaster@example.com"` | Required. Email address to use for Let's Encrypt notifications |
+| `profile` | - | `string` | `"default"` | AWS profile to assume for AWS CLI v2 and OpenTofu |
+| `region` | - | `string` | `"ap-east-1"` | AWS region to deploy the resources into |
+| `vpc_cidr` | - | `string` | `"10.0.0.0/16"` | VPC CIDR block. Should be a valid [RFC 1918](https://datatracker.ietf.org/doc/html/rfc1918) private subnet |
+| `subnet_cidr` | - | `string` | `"10.0.1.0/24"` | Subnet CIDR block. Should be a valid subnet of the VPC CIDR block |
+| `ssh_pubkey_path` | - | `string` | `"~/.ssh/microk8s-homelab.pub"` | Path to SSH public key. Evaluated with `pathexpand()` before use |
+| `instance_type` | - | `string` | `"t3.micro"` | Instance type of MicroK8s reverse tunnel proxy |
 
 ## License
 

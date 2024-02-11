@@ -22,3 +22,24 @@ status:
 EOT
   filename = "${path.module}/../../manifests/nginx-ingress.yaml"
 }
+
+resource "local_file" "letsencrypt-clusterissuer" {
+  content  = <<EOT
+---
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt
+spec:
+  acme:
+    email: ${var.email}
+    server: https://acme-staging-v02.api.letsencrypt.org/directory
+    privateKeySecretRef:
+      name: letsencrypt
+    solvers:
+    - http01:
+        ingress:
+          class: public
+EOT
+  filename = "${path.module}/../../manifests/letsencrypt-clusterissuer.yaml"
+}
