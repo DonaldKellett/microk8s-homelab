@@ -2,6 +2,10 @@
 
 Expose your MicroK8s homelab to the Internet
 
+## Architecture
+
+![MicroK8s homelab architecture](./images/00-microk8s-homelab-architecture.png)
+
 ## Developing
 
 Fork and clone this repository, then navigate to the project root and follow the instructions below.
